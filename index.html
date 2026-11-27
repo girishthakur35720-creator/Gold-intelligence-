@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090d14" />
+  <title>Gold Intelligence | XAUUSD Market Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Gold Intelligence home">
+        <span class="brand-mark">G<span>i</span></span>
+        <span class="brand-copy"><strong>GOLD INTELLIGENCE</strong><small>MARKET DEPTH TERMINAL</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav">
+        <a class="nav-item active" href="#overview"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-item" href="#profile"><span class="nav-icon">◫</span> Volume profile</a>
+        <a class="nav-item" href="#zones"><span class="nav-icon">⌖</span> Key zones</a>
+        <a class="nav-item" href="#orderflow"><span class="nav-icon">≋</span> Order flow</a>
+        <a class="nav-item" href="#structure"><span class="nav-icon">⌁</span> Structure</a>
+        <a class="nav-item" href="#reports"><span class="nav-icon">▤</span> Session reports</a>
+      </nav>
+      <div class="side-bottom">
+        <div class="connection-card">
+          <div class="connection-top"><span class="status-dot amber"></span><span>DATA CONNECTION</span></div>
+          <strong>Simulation mode</strong>
+          <p>Live COMEX feed not connected</p>
+        </div>
+        <div class="profile-mini"><div class="avatar">GI</div><div><strong>Trading desk</strong><small>Local workspace</small></div><span class="more">···</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">G<span>i</span></span><strong>GOLD INTELLIGENCE</strong></div>
+        <div class="crumb">Workspace <span>/</span> <b>Market overview</b></div>
+        <div class="top-actions"><div class="market-pill"><span class="pulse"></span> MARKET SIMULATION</div><button class="icon-button" aria-label="Notifications">♧</button><button class="avatar top-avatar">GI</button></div>
+      </header>
+
+      <section class="page-heading">
+        <div><div class="eyebrow">FRIDAY, 27 NOVEMBER 2026 <i></i> INDIA STANDARD TIME</div><h1>Market overview</h1><p>Your gold market intelligence, all in one place.</p></div>
+        <div class="session-box"><span class="session-label">SESSION STATUS</span><strong><span class="status-dot amber"></span> Outside monitoring window</strong><small>Monitoring: 09:30 – 15:00 IST</small></div>
+      </section>
+
+      <section class="notice"><span class="notice-icon">i</span><div><strong>Prototype data is being displayed</strong><p>All prices, order-flow readings and market levels on this screen are illustrative. A licensed real-time COMEX data feed is not connected.</p></div><span class="notice-tag">DEMO DATA</span></section>
+
+      <section class="market-grid">
+        <article class="card instrument-card">
+          <div class="card-head"><div class="instrument-title"><div class="gold-icon">Au</div><div><span class="muted">SPOT INSTRUMENT</span><h2>XAUUSD <span class="live-chip">SIMULATED</span></h2></div></div><span class="dots">···</span></div>
+          <div class="price-row"><strong id="goldPrice">3,680.20</strong><span class="change positive">▲ 0.34%</span></div>
+          <div class="price-sub">Illustrative spot reference <span>USD / oz</span></div>
+          <div class="mini-chart"><svg viewBox="0 0 600 112" preserveAspectRatio="none" role="img" aria-label="Illustrative XAUUSD price curve"><defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#d6a84f" stop-opacity=".22"/><stop offset="100%" stop-color="#d6a84f" stop-opacity="0"/></linearGradient></defs><path class="chart-area" d="M0 82 C25 70 35 78 55 61 S90 66 112 48 S145 59 164 52 S192 62 218 40 S252 47 270 34 S305 52 328 43 S356 49 378 26 S415 39 438 31 S470 44 493 19 S530 31 551 14 S580 22 600 8 L600 112 L0 112Z"/><path class="chart-line" d="M0 82 C25 70 35 78 55 61 S90 66 112 48 S145 59 164 52 S192 62 218 40 S252 47 270 34 S305 52 328 43 S356 49 378 26 S415 39 438 31 S470 44 493 19 S530 31 551 14 S580 22 600 8"/></svg></div>
+          <div class="chart-times"><span>09:30</span><span>10:30</span><span>11:30</span><span>12:30</span><span>13:30</span><span>15:00</span></div>
+        </article>
+        <article class="card futures-card">
+          <div class="card-head"><div><span class="muted">PRIMARY INTELLIGENCE SOURCE</span><h2>COMEX GOLD <span class="contract">GC</span></h2></div><span class="exchange-badge">CME</span></div>
+          <div class="futures-price">3,694.80 <span class="change positive">▲ 0.29%</span></div>
+          <div class="futures-sub">Illustrative futures reference · USD / oz</div>
+          <div class="divider"></div>
+          <div class="basis-row"><div><span class="muted">GC → XAUUSD BASIS</span><strong>+14.60 <small>USD</small></strong></div><span class="basis-note">DEMO CALCULATION</span></div>
+          <p class="helper">Basis is illustrative. Live mapping requires synchronized licensed GC and XAUUSD prices.</p>
+        </article>
+      </section>
+
+      <section class="section-head" id="profile"><div><div class="eyebrow">01 / MARKET STRUCTURE</div><h2>Frozen volume profile</h2><p>Daily profile window · 05:30 to 09:30 IST</p></div><div class="freeze-badge"><span>❄</span> PROFILE FROZEN <b>09:30</b></div></section>
+      <section class="card profile-card">
+        <div class="profile-summary">
+          <div class="metric"><span>POINT OF CONTROL</span><strong>3,692.40</strong><small class="gold-text">POC</small></div>
+          <div class="metric"><span>VALUE AREA HIGH</span><strong>3,701.20</strong><small>VAH</small></div>
+          <div class="metric"><span>VALUE AREA LOW</span><strong>3,681.60</strong><small>VAL</small></div>
+          <div class="metric"><span>VALUE AREA</span><strong>68.4%</strong><small>Illustrative</small></div>
+        </div>
+        <div class="profile-visual">
+          <div class="profile-axis"><span>3,706</span><span>3,702</span><span>3,698</span><span>3,694</span><span>3,690</span><span>3,686</span><span>3,682</span><span>3,678</span></div>
+          <div class="profile-bars" aria-label="Illustrative volume profile distribution">
+            <div class="vp-row"><span class="vp-bar" style="width:18%"></span></div><div class="vp-row"><span class="vp-bar" style="width:28%"></span></div><div class="vp-row"><span class="vp-bar" style="width:38%"></span></div><div class="vp-row"><span class="vp-bar" style="width:62%"></span></div><div class="vp-row"><span class="vp-bar" style="width:76%"></span></div><div class="vp-row"><span class="vp-bar poc" style="width:100%"></span><em>POC</em></div><div class="vp-row"><span class="vp-bar" style="width:83%"></span></div><div class="vp-row"><span class="vp-bar" style="width:69%"></span></div><div class="vp-row"><span class="vp-bar" style="width:44%"></span></div><div class="vp-row"><span class="vp-bar" style="width:31%"></span></div><div class="vp-row"><span class="vp-bar" style="width:23%"></span></div><div class="vp-row"><span class="vp-bar" style="width:12%"></span></div>
+          </div>
+          <div class="profile-tags"><span class="tag-line vah">VAH 3,701.20</span><span class="tag-line poc">POC 3,692.40</span><span class="tag-line val">VAL 3,681.60</span></div>
+        </div>
+        <div class="profile-footer"><span><i class="legend-dot gold"></i> Volume at price</span><span><i class="legend-dot green"></i> Value area</span><span><i class="legend-dot blue"></i> Point of control</span><span class="right-note">FROZEN PROFILE · NO DEVELOPING UPDATES</span></div>
+      </section>
+
+      <section class="section-head" id="zones"><div><div class="eyebrow">02 / PRICE AREAS</div><h2>Qualified key zones</h2><p>Volume concentration confirmed by historical reactions</p></div><button class="outline-button" id="addZoneBtn">＋ Add manual zone</button></section>
+      <section class="card zones-card">
+        <div class="table-wrap"><table><thead><tr><th>ZONE</th><th>PRICE BAND</th><th>TYPE</th><th>REACTIONS</th><th>VOLUME</th><th>STATUS</th></tr></thead><tbody id="zoneRows">
+          <tr><td><span class="zone-symbol resistance">R</span><strong>Upper supply</strong></td><td class="mono">3,704.80 – 3,708.20</td><td><span class="type resistance-text">Resistance</span></td><td>3 confirmed</td><td>HVN</td><td><span class="status-pill muted-pill">Above market</span></td></tr>
+          <tr><td><span class="zone-symbol support">S</span><strong>Core demand</strong></td><td class="mono">3,681.60 – 3,685.40</td><td><span class="type support-text">Support</span></td><td>2 confirmed</td><td>HVN</td><td><span class="status-pill watch-pill">Watch</span></td></tr>
+          <tr><td><span class="zone-symbol neutral">L</span><strong>Low-volume shelf</strong></td><td class="mono">3,675.20 – 3,677.00</td><td><span class="type neutral-text">LVN</span></td><td>2 confirmed</td><td>LVN</td><td><span class="status-pill muted-pill">Below market</span></td></tr>
+        </tbody></table></div>
+        <div class="zone-note"><span>ⓘ</span> Automatic zones require at least two meaningful historical reactions. These sample rows are illustrative, not detected live levels.</div>
+      </section>
+
+      <section class="section-head" id="orderflow"><div><div class="eyebrow">03 / AUCTION INTELLIGENCE</div><h2>Order-flow pulse</h2><p>Read aggression, absorption and the market's actual response</p></div><span class="data-label">SIMULATED SNAPSHOT</span></section>
+      <section class="flow-grid">
+        <article class="card flow-card"><div class="card-head"><h3>Buy vs sell pressure</h3><span class="muted">DELTA SPLIT</span></div><div class="pressure-numbers"><div><strong class="green-text">56.8%</strong><small>BUY AGGRESSION</small></div><div class="align-right"><strong class="red-text">43.2%</strong><small>SELL AGGRESSION</small></div></div><div class="pressure-track"><span></span><i></i></div><div class="pressure-legend"><span>Buy market orders</span><span>Sell market orders</span></div><div class="flow-stat-row"><span>Net delta</span><strong class="green-text">+1,284 contracts</strong></div></article>
+        <article class="card flow-card"><div class="card-head"><h3>Cumulative delta</h3><span class="muted">CVD · SESSION</span></div><div class="cvd-value">+4,820 <span class="change positive">Rising</span></div><svg class="cvd-chart" viewBox="0 0 400 90" preserveAspectRatio="none" aria-label="Illustrative cumulative delta chart"><path d="M0 74 L25 66 L48 70 L70 52 L95 58 L118 43 L142 48 L165 29 L190 37 L215 26 L240 39 L265 22 L290 28 L315 17 L340 27 L370 9 L400 14" fill="none" stroke="#52c69a" stroke-width="2.5"/><path d="M0 74 L25 66 L48 70 L70 52 L95 58 L118 43 L142 48 L165 29 L190 37 L215 26 L240 39 L265 22 L290 28 L315 17 L340 27 L370 9 L400 14 L400 90 L0 90Z" fill="url(#cvdArea)"/></svg><div class="chart-times"><span>09:30</span><span>11:00</span><span>12:30</span><span>15:00</span></div></article>
+        <article class="card flow-card absorption-card"><div class="card-head"><h3>Absorption watch</h3><span class="muted">PRICE RESPONSE</span></div><div class="absorption-state"><span class="absorb-icon">⌁</span><div><strong>Potential buy-side absorption</strong><small>Illustrative event near 3,684.20</small></div></div><p class="helper">Aggressive selling appears to meet passive bids, but confirmation requires the subsequent price response. This is not a trade signal.</p><div class="absorb-footer"><span>Evidence status</span><b class="amber-text">Needs confirmation</b></div></article>
+      </section>
+
+      <section class="section-head" id="structure"><div><div class="eyebrow">04 / EXECUTION FILTER</div><h2>1-minute structure monitor</h2><p>Small breaks are filtered. Structure needs meaningful displacement and context.</p></div><span class="data-label">DEMO STATE</span></section>
+      <section class="structure-grid">
+        <article class="card structure-card"><div class="card-head"><h3>Structure checklist</h3><span class="muted">1M TIMEFRAME</span></div><div class="check-row"><span class="check neutral-check">•</span><span>Meaningful swing identified</span><b>Pending</b></div><div class="check-row"><span class="check neutral-check">•</span><span>Candle close beyond swing</span><b>Pending</b></div><div class="check-row"><span class="check neutral-check">•</span><span>Displacement confirmed</span><b>Pending</b></div><div class="check-row"><span class="check neutral-check">•</span><span>COMEX order-flow confirmation</span><b>Pending</b></div></article>
+        <article class="card decision-card"><div class="eyebrow">CURRENT ENGINE OUTPUT</div><div class="decision-state"><span class="decision-icon">Ⅱ</span><div><strong>NO TRADE</strong><small>Insufficient confirmed evidence</small></div></div><p>Wait for price to interact with a qualified zone, observe order flow, then require a meaningful 1-minute structure shift before considering an entry.</p><div class="decision-foot"><span>Directional bias</span><b>Not established</b></div></article>
+      </section>
+
+      <section class="session-strip" id="reports"><div class="session-clock"><span class="clock-icon">◷</span><div><small>DAILY OPERATING SCHEDULE</small><strong>05:30 – 09:30 <i>Profile build</i></strong><strong>09:30 – 15:00 <i>Monitor & qualify</i></strong><strong>After 15:00 <i>Review & report</i></strong></div></div><div class="session-rule"><strong>One rule above all</strong><p>No new entries after 15:00 IST. The engine switches to observation and daily reporting mode.</p></div></section>
+      <footer><span>GOLD INTELLIGENCE <b>·</b> MARKET DEPTH TERMINAL</span><span>Prototype v0.1 <b>·</b> All displayed market readings are simulated</span></footer>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="zoneModal" aria-hidden="true"><div class="modal"><div class="modal-head"><div><span class="eyebrow">MANUAL LEVEL</span><h2>Add a key zone</h2></div><button class="close-modal" id="closeModal" aria-label="Close">×</button></div><form id="zoneForm"><label>Zone name<input name="name" required maxlength="32" placeholder="e.g. Morning demand"></label><div class="form-row"><label>Lower price<input name="low" type="number" step="0.1" required placeholder="3680.0"></label><label>Upper price<input name="high" type="number" step="0.1" required placeholder="3685.0"></label></div><label>Zone type<select name="type"><option value="Support">Support</option><option value="Resistance">Resistance</option><option value="LVN">LVN</option></select></label><p class="form-hint">Manual zones are marked as user-created and are not automatically qualified by historical reactions.</p><button class="primary-button" type="submit">Add zone</button></form></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
