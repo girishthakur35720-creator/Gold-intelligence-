@@ -1,6 +1,6 @@
 const OWNER = "girishthakur35720-creator";
 const REPO = "Gold-intelligence-";
-const REV = "e3600e6903fbeec45666e7cc24466719e97792d1";
+const REV = "d1c76984ee0eb454683afa809c5dae0c32a8c482";
 const CONTENT_TYPES = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
