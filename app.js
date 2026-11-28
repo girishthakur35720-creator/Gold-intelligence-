@@ -24,28 +24,63 @@ function escapeHtml(value) {
   })[char]);
 }
 
+const STORAGE_KEYS = {
+  manualZones: "gold-intelligence.manual-zones.v1",
+  activeSection: "gold-intelligence.active-section.v1"
+};
+
+function readSaved(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : JSON.parse(value);
+  } catch (_) {
+    return fallback;
+  }
+}
+function saveValue(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {
+    // Keep the workspace usable if browser storage is unavailable or full.
+  }
+}
+
+let manualZones = readSaved(STORAGE_KEYS.manualZones, []);
+if (!Array.isArray(manualZones)) manualZones = [];
+
+function renderManualZone(zone, prepend = false) {
+  const symbolClass = zone.type === "Support" ? "support" : zone.type === "Resistance" ? "resistance" : "neutral";
+  const typeClass = zone.type === "Support" ? "support-text" : zone.type === "Resistance" ? "resistance-text" : "neutral-text";
+  const status = zone.type === "LVN" ? "Manual LVN" : "Manual level";
+  const row = document.createElement("tr");
+  row.dataset.manualZone = "true";
+  row.innerHTML = `<td><span class="zone-symbol ${symbolClass}">M</span><strong>${escapeHtml(zone.name)}</strong></td>
+    <td class="mono">${Number(zone.low).toFixed(2)} – ${Number(zone.high).toFixed(2)}</td>
+    <td><span class="type ${typeClass}">${escapeHtml(zone.type)}</span></td>
+    <td>Not assessed</td><td>User-defined</td><td><span class="status-pill watch-pill">${status}</span></td>`;
+  if (prepend) rows.prepend(row); else rows.append(row);
+}
+manualZones.forEach((zone) => {
+  if (zone && typeof zone.name === "string" && Number.isFinite(Number(zone.low)) &&
+      Number.isFinite(Number(zone.high)) && Number(zone.low) < Number(zone.high) &&
+      ["Support", "Resistance", "LVN"].includes(zone.type)) renderManualZone(zone);
+});
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(form);
-  const name = String(data.get("name")).trim();
-  const low = Number(data.get("low"));
-  const high = Number(data.get("high"));
-  const type = String(data.get("type"));
-
-  if (!name || !Number.isFinite(low) || !Number.isFinite(high) || low >= high) {
+  const zone = {
+    name: String(data.get("name")).trim(),
+    low: Number(data.get("low")),
+    high: Number(data.get("high")),
+    type: String(data.get("type"))
+  };
+  if (!zone.name || !Number.isFinite(zone.low) || !Number.isFinite(zone.high) ||
+      zone.low >= zone.high || !["Support", "Resistance", "LVN"].includes(zone.type)) {
     alert("Enter a zone name and a valid price range. Upper price must be greater than lower price.");
     return;
   }
-
-  const symbolClass = type === "Support" ? "support" : type === "Resistance" ? "resistance" : "neutral";
-  const typeClass = type === "Support" ? "support-text" : type === "Resistance" ? "resistance-text" : "neutral-text";
-  const status = type === "Support" ? "Manual level" : type === "Resistance" ? "Manual level" : "Manual LVN";
-  const row = document.createElement("tr");
-  row.innerHTML = `<td><span class="zone-symbol ${symbolClass}">M</span><strong>${escapeHtml(name)}</strong></td>
-    <td class="mono">${low.toFixed(2)} – ${high.toFixed(2)}</td>
-    <td><span class="type ${typeClass}">${type}</span></td>
-    <td>Not assessed</td><td>User-defined</td><td><span class="status-pill watch-pill">${status}</span></td>`;
-  rows.prepend(row);
+  manualZones.unshift(zone);
+  saveValue(STORAGE_KEYS.manualZones, manualZones);
+  renderManualZone(zone, true);
   form.reset();
   closeModal();
 });
@@ -63,6 +98,7 @@ function setActiveNav(activeLink) {
     if (active) link.setAttribute("aria-current", "location");
     else link.removeAttribute("aria-current");
   });
+  if (activeLink) saveValue(STORAGE_KEYS.activeSection, activeLink.hash.slice(1));
 }
 
 function syncActiveNav() {
@@ -95,7 +131,18 @@ function requestNavSync() {
 }
 window.addEventListener("scroll", requestNavSync, { passive: true });
 window.addEventListener("resize", requestNavSync);
-syncActiveNav();
+
+// Restore the last workspace section after a reload; first visit stays on Overview.
+const savedSection = readSaved(STORAGE_KEYS.activeSection, "overview");
+const savedTarget = navSections.find((item) => item.section.id === savedSection);
+if (savedTarget) {
+  requestAnimationFrame(() => {
+    savedTarget.section.scrollIntoView({ block: "start" });
+    setActiveNav(savedTarget.link);
+  });
+} else {
+  syncActiveNav();
+}
 
 function updateProfileState() {
   const badge = document.querySelector(".freeze-badge");
