@@ -322,6 +322,8 @@
     const minute = Number(parts.find((x) => x.type === "minute").value);
     const total = hour * 60 + minute;
     const status = total >= 570 && total < 900 ? "Monitoring window open" : total < 570 ? "Profile build / pre-monitoring" : "Observation only · no new entries";
+    const dateLabel = $("ist-session-date");
+    if (dateLabel) dateLabel.innerHTML = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", weekday: "long", day: "2-digit", month: "long", year: "numeric" }).format(now).toUpperCase() + " <i></i> INDIA STANDARD TIME";
     const box = document.querySelector(".session-box strong");
     if (box) box.innerHTML = '<span class="status-dot ' + (total >= 570 && total < 900 ? "" : "amber") + '"></span> ' + status;
   }
