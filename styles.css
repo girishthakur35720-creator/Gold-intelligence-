@@ -3,3 +3,49 @@
 @media(max-width:1100px){.sidebar{width:205px}.main-content{margin-left:205px;padding:0 22px}.flow-grid{grid-template-columns:1fr 1fr}.absorption-card{grid-column:span 2}.market-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:720px){.sidebar{display:none}.main-content{margin:0;padding:0 14px}.topbar{height:58px}.mobile-brand{display:flex;align-items:center;gap:8px;font:700 10px Manrope;letter-spacing:.8px}.mobile-brand .brand-mark{width:28px;height:28px;font-size:15px}.crumb{display:none}.top-actions{gap:7px}.market-pill{font-size:8px;padding:6px}.page-heading{padding:22px 0 16px;align-items:start;gap:10px}.page-heading h1{font-size:22px}.page-heading p{font-size:10px}.session-box{min-width:0;padding:9px;width:155px}.session-box strong{font-size:9px}.session-box small{font-size:8px}.notice{align-items:start;padding:10px}.notice p{font-size:9px}.notice-tag{font-size:7px}.market-grid{grid-template-columns:1fr}.instrument-card,.futures-card{padding:15px}.price-row>strong{font-size:30px}.section-head{margin-top:23px;align-items:end}.section-head h2{font-size:16px}.section-head p{font-size:9px;max-width:240px}.freeze-badge{font-size:7px;padding:7px}.profile-card{padding:14px}.profile-summary{grid-template-columns:1fr 1fr;row-gap:13px}.metric:nth-child(2){border:0}.metric:nth-child(3){padding-left:0}.profile-visual{grid-template-columns:36px minmax(100px,1fr) 105px;gap:7px}.profile-footer{flex-wrap:wrap;gap:8px 13px}.right-note{width:100%;margin:3px 0 0}.outline-button{font-size:8px;padding:7px}.flow-grid{grid-template-columns:1fr}.absorption-card{grid-column:auto}.structure-grid{grid-template-columns:1fr}.session-strip{align-items:start;flex-direction:column;gap:14px}.session-rule{margin-left:47px}.session-clock strong{font-size:9px}footer{gap:8px;flex-direction:column;font-size:7px}.data-label{font-size:7px}.top-avatar{height:27px;width:27px}}
 @media(max-width:390px){.page-heading{flex-direction:column}.session-box{width:100%}.notice-tag{display:none}.profile-visual{grid-template-columns:32px minmax(85px,1fr) 98px}.metric strong{font-size:16px}}
+
+
+/* Phase 1 live market-data workspace */
+#live-intelligence{margin:8px 0 24px}
+.live-section-head{display:flex;align-items:end;justify-content:space-between;margin:0 0 12px}
+.live-section-head h2{font:700 18px Manrope;margin:5px 0 4px}
+.live-section-head p{margin:0;color:var(--muted);font-size:11px}
+.live-mode-pill{border:1px solid #315747;background:#14271f;color:#85d6ae;border-radius:5px;padding:7px 9px;font:9px "DM Mono";letter-spacing:.6px}
+.live-source-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.live-source-card,.live-panel{background:linear-gradient(145deg,#121d29,#0e1620);border:1px solid #263646;border-radius:9px;padding:15px;min-width:0}
+.live-source-top{display:flex;align-items:center;gap:7px;color:#8292a4;font:9px "DM Mono";letter-spacing:.7px}
+.live-source-dot{width:7px;height:7px;border-radius:50%;background:#d5a64e;box-shadow:0 0 8px #d5a64e55}
+.live-source-dot.green{background:#52c69a;box-shadow:0 0 8px #52c69a66}
+.live-source-dot.red{background:#e47777;box-shadow:0 0 8px #e4777766}
+.live-source-name{margin-top:13px;color:#aab7c6;font:10px "DM Mono"}
+.live-source-price{display:block;margin-top:5px;font:700 25px Manrope;letter-spacing:-.6px;color:#edf2f8}
+.live-source-meta{margin-top:5px;color:#8fa0b2;font-size:10px;min-height:14px}
+.live-source-foot{border-top:1px solid #263545;margin-top:12px;padding-top:9px;color:#75869a;font-size:9px}
+.live-data-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:13px;margin-top:13px}
+.live-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}
+.live-kicker{font:9px "DM Mono";letter-spacing:.8px;color:#d2ad67}
+.live-panel h3{font:600 13px Manrope;margin:4px 0 0;color:#e6edf5}
+.live-feed-state{font:8px "DM Mono";letter-spacing:.5px;color:#90cdb2;border:1px solid #2e5848;background:#172a24;padding:5px 7px;border-radius:4px;white-space:nowrap}
+.live-book-columns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.live-book-label{font:8px "DM Mono";letter-spacing:.6px;margin-bottom:7px}
+.live-book-label.sell{color:#e58c8c}.live-book-label.buy{color:#69c79e}
+.live-book-list{display:grid;gap:4px;min-height:128px;align-content:start}
+.live-book-row{position:relative;overflow:hidden;display:flex;justify-content:space-between;gap:8px;padding:5px 7px;border-radius:3px;background:#111d28;color:#c8d2df;font:9px "DM Mono"}
+.live-book-row i{position:absolute;right:0;top:0;bottom:0;opacity:.13;pointer-events:none}
+.live-book-row.sell i{background:#df7777}.live-book-row.buy i{background:#43b88a}
+.live-empty{color:#718195;font-size:9px;padding:12px 0}
+.live-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;border-top:1px solid #263545;margin-top:12px;padding-top:11px}
+.live-metrics span,.lighter-summary span{display:block;color:#7f90a2;font:8px "DM Mono";letter-spacing:.4px}
+.live-metrics strong,.lighter-summary strong{display:block;color:#dce5ee;font:600 11px "DM Mono";margin-top:5px;overflow-wrap:anywhere}
+.live-cvd-value{font:700 30px Manrope;color:#62c99d;margin-top:20px}
+.live-cvd-caption{color:#8292a4;font-size:9px;margin-top:3px}
+.live-cvd-track{height:7px;border-radius:8px;background:#263545;margin-top:17px;overflow:hidden}
+.live-cvd-track span{display:block;height:100%;width:0;background:#52c69a;transition:width .2s}
+.live-cvd-track span.negative{background:#e47777}
+.live-disclaimer{font-size:9px;line-height:1.5;color:#8291a1;margin:12px 0 0}
+.lighter-panel{margin-top:13px}
+.lighter-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.live-footnote{margin-top:10px;color:#8191a3;font-size:9px;line-height:1.5}
+.live-footnote span{color:#d3ad65;font:9px "DM Mono";margin-right:8px}
+@media(max-width:900px){.live-source-grid{grid-template-columns:1fr 1fr}.live-data-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.live-section-head{align-items:start;gap:8px;flex-direction:column}.live-source-grid{grid-template-columns:1fr}.live-source-card{padding:13px}.lighter-summary{grid-template-columns:1fr 1fr}.live-book-columns{gap:8px}.live-metrics{grid-template-columns:1fr 1fr}.live-mode-pill{font-size:8px}}
