@@ -143,3 +143,15 @@ html[data-theme="light"] .modal input,html[data-theme="light"] .modal select{bac
 html[data-theme="light"] .modal form label,html[data-theme="light"] .modal-head h2{color:#334155}
 html[data-theme="light"] .freeze-badge.is-frozen{color:#245d89}
 @media(max-width:720px){.own-chart-heading{align-items:start;flex-direction:column}.own-chart-toolbar{align-items:start}.chart-tools{width:100%}.own-chart-frame{height:430px}.own-chart-footer{flex-direction:column}}
+
+
+/* Stronger, more legible terminal typography */
+:root{font-family:"Manrope","Inter",Arial,sans-serif;font-weight:500}
+body{font-size:14px;font-weight:500;letter-spacing:.05px}
+h1,h2,h3,h4,.page-heading h1,.own-chart-heading h2,.card h2,.live-panel h3{font-weight:800;letter-spacing:-.35px}
+p,.nav-item,.crumb,.connection-card strong,.live-source-meta,.helper,.tradingview-note{font-weight:600}
+.nav-item{font-size:13px}
+.side-label,.eyebrow,.brand-copy small,.connection-top,.live-kicker,.live-source-top,.own-chart-footer,.chart-feed-status{font-weight:700}
+.chart-timeframes button,.chart-tool-button{font-weight:700;font-size:10px}
+.chart-empty{font-family:"Inter",Arial,sans-serif;font-weight:650;font-size:13px}
+.own-chart-heading p,.tradingview-note{font-size:11px;font-weight:600;line-height:1.55}
