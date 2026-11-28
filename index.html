@@ -115,5 +115,6 @@
   </div>
   <div class="modal-backdrop" id="zoneModal" aria-hidden="true"><div class="modal"><div class="modal-head"><div><span class="eyebrow">MANUAL LEVEL</span><h2>Add a key zone</h2></div><button class="close-modal" id="closeModal" aria-label="Close">×</button></div><form id="zoneForm"><label>Zone name<input name="name" required maxlength="32" placeholder="e.g. Morning demand"></label><div class="form-row"><label>Lower price<input name="low" type="number" step="0.1" required placeholder="3680.0"></label><label>Upper price<input name="high" type="number" step="0.1" required placeholder="3685.0"></label></div><label>Zone type<select name="type"><option value="Support">Support</option><option value="Resistance">Resistance</option><option value="LVN">LVN</option></select></label><p class="form-hint">Manual zones are marked as user-created and are not automatically qualified by historical reactions.</p><button class="primary-button" type="submit">Add zone</button></form></div></div>
   <script src="app.js"></script>
+  <script src="live-data.js"></script>
 </body>
 </html>
