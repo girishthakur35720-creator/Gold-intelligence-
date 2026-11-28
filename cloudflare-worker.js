@@ -18,13 +18,14 @@ export default {
         ok: true,
         app: "Gold Intelligence",
         source: "GitHub",
-        mode: "prototype",
+        mode: "phase-1-live-data",
+        dataSources: ["Gold API XAU reference", "Hyperliquid public WebSocket", "Lighter public REST snapshots"],
       });
     }
 
     let path = decodeURIComponent(url.pathname);
     if (path === "/" || path.endsWith("/")) path += "index.html";
-    if (path.includes("..") || path.includes("\\")) {
+    if (path.includes("..") || path.includes("\\\\")) {
       return new Response("Not found", { status: 404 });
     }
 
@@ -34,7 +35,7 @@ export default {
 
     const source = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}${path}`;
     const upstream = await fetch(source, {
-      cf: { cacheTtl: 60, cacheEverything: true },
+      cf: { cacheTtl: 15, cacheEverything: true },
     });
 
     if (!upstream.ok) {
@@ -45,7 +46,7 @@ export default {
 
     const headers = new Headers(upstream.headers);
     headers.set("Content-Type", contentType);
-    headers.set("Cache-Control", "public, max-age=60");
+    headers.set("Cache-Control", "public, max-age=15");
     headers.set("X-Content-Type-Options", "nosniff");
 
     return new Response(upstream.body, { status: 200, headers });
