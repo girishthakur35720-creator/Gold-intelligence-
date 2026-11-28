@@ -1,47 +1,45 @@
 # Gold Intelligence
 
-A market-intelligence dashboard for XAUUSD traders, using COMEX Gold Futures (GC) as the primary centralized market-data reference.
+A market-intelligence dashboard for XAUUSD traders. Spot gold is the execution reference; exchange-listed gold perpetuals are separate liquidity/order-flow references and are never silently substituted for spot.
 
 ## Product principles
 
-- **Execution market:** XAUUSD (spot gold).
-- **Market intelligence reference:** COMEX Gold Futures standard contract (GC).
-- **Basis-aware levels:** COMEX prices must never be copied directly to XAUUSD. A future licensed data adapter will calculate and maintain the live GC-to-XAUUSD basis.
-- **Honest data status:** The initial app uses clearly labelled illustrative/demo data. No screen or signal should imply a live feed is connected until a licensed real-time market-data source is configured.
-- **No fabricated probabilities:** Directional assessments must be supported by observable evidence and eventually calibrated against historical replay data.
+- **Execution market:** XAUUSD spot.
+- **Spot reference:** Gold API's public XAU/USD indicative price endpoint. This is not a broker's executable bid/ask quote.
+- **Exchange intelligence:** Hyperliquid and Lighter gold/XAU perpetuals are discovered from their public market metadata. Each venue keeps its own book and trade flow.
+- **No instrument substitution:** If a venue has no active GOLD/XAU perpetual, it is marked unavailable. Tokenized-gold spot products such as XAUT are not treated as XAUUSD or gold futures.
+- **Honest data status:** Legacy dashboard metrics remain explicitly illustrative. Only the new connected-feed panel displays provider data.
+- **No fabricated probabilities:** CVD is accumulated from trades received after this browser connects; it is not represented as a complete session history.
 
-## Initial session model (IST)
+## Session model (IST)
 
-- Build the daily COMEX volume profile from **05:30 to 09:30 IST**.
-- Freeze the profile at **09:30 IST** for the rest of the session.
+- Build the daily Volume Profile from **05:30 to 09:30 IST**.
+- Freeze the profile at **09:30 IST**.
 - Monitor setups from **09:30 to 15:00 IST**.
 - Do not generate new entries after **15:00 IST**.
 
-## Planned modules
+## Phase 1: Live data foundation
 
-1. XAUUSD market overview and session clock.
-2. COMEX GC feed adapter boundary and data-health status.
-3. Frozen Volume Profile: POC, VAH, VAL, HVN and LVN.
-4. Qualified support/resistance zones, with automatic and manual editing.
-5. Order-flow monitor: delta, CVD, footprint, DOM, liquidity changes and absorption.
-6. Evidence-led buyer/seller assessment, including a clear **NO TRADE** state.
-7. Historical replay and backtesting before any empirical performance claims.
+- Gold API XAU/USD indicative reference, refreshed every 15 seconds.
+- Hyperliquid market discovery via public metadata, then WebSocket L2 book and trade subscriptions.
+- Lighter market discovery via public REST metadata, then public order-book and recent-trade snapshots every 5 seconds when a matching active perpetual exists.
+- Independent venue books, top-of-book spread and top-10-level size imbalance.
+- CVD accumulated from newly observed trade prints after connection.
+- Automatic Hyperliquid reconnect, source timestamps, provider status and explicit unavailable states.
 
-## Zone qualification
+## Important data limitations
 
-An automatically detected HVN/LVN is not sufficient by itself. A candidate zone should also show at least two meaningful historical support/resistance reactions. Keep the components visible rather than hiding them inside one opaque rectangle:
-
-- Candle-body cluster: core acceptance region.
-- Wick extremes: rejection boundaries.
-- Volume cluster: participation confirmation.
-- Historical reactions: qualification evidence.
-
-Detailed monitoring begins when price enters the outer wick boundary. The body region is the core area for studying acceptance or rejection.
+- Public exchange perpetual order books are venue-specific derivatives data, not the global OTC XAUUSD book.
+- Gold API's XAU price is an indicative spot reference, not an executable broker quote and not a substitute for a licensed institutional feed.
+- Lighter REST snapshots can be cached by its edge. They are not equivalent to a guaranteed low-latency WebSocket feed.
+- CVD starts at zero when the browser connects. It does not reconstruct trades missed before connection.
+- The legacy volume profile, zones, order-flow cards and structure panel contain illustrative sample values until their underlying calculations are connected to validated data.
+- No automatic trading is enabled.
 
 ## Development status
 
-**Stage 1: Dashboard foundation.** The current interface is a front-end prototype with simulated data. Market-data integration, order-flow calculations and signal validation are not yet connected.
+**Phase 1 implementation:** public spot reference and exchange-feed adapters in the browser. Further validation is required for instrument availability, cross-origin access, exchange-side rate limits and observed feed continuity before relying on the data.
 
 ## Data and risk notice
 
-This project is an analytical tool prototype, not an execution platform or investment recommendation. Market data may be delayed, simulated, incomplete or unavailable until the appropriate provider and exchange permissions are configured. Never trade from illustrative values.
+This is an analytical prototype, not an execution platform or investment recommendation. Public data can be delayed, incomplete, cached or unavailable. Never trade from illustrative values or an unvalidated feed.
