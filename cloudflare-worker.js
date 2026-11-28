@@ -25,7 +25,7 @@ export default {
 
     let path = decodeURIComponent(url.pathname);
     if (path === "/" || path.endsWith("/")) path += "index.html";
-    if (path.includes("..") || path.includes("\\\\")) {
+    if (path.includes("..") || path.includes(String.fromCharCode(92))) {
       return new Response("Not found", { status: 404 });
     }
 
