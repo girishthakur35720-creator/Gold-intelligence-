@@ -96,3 +96,50 @@ html{scroll-behavior:smooth}
 }
 .freeze-badge.is-frozen span{color:#a8dcff;text-shadow:0 0 10px #80caff99}
 .freeze-badge.is-frozen b{color:#e5f5ff}
+
+
+/* Native persistent chart workspace */
+.own-chart-section{margin:22px 0 26px;border:1px solid #263646;border-radius:10px;background:#101722;overflow:hidden}
+.own-chart-heading{display:flex;justify-content:space-between;align-items:end;gap:15px;padding:17px 18px 13px}
+.own-chart-heading h2{font:700 18px Manrope;margin:5px 0 4px}
+.own-chart-heading p{margin:0;color:#8796a8;font-size:10px}
+.own-chart-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 14px;border-top:1px solid #253344;border-bottom:1px solid #253344;background:#0d1520}
+.chart-timeframes,.chart-tools{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.chart-timeframes button,.chart-tool-button{border:1px solid #304155;background:#152131;color:#aebed0;border-radius:5px;padding:7px 9px;font:9px "DM Mono";cursor:pointer}
+.chart-timeframes button.selected{background:#47371f;border-color:#a9803b;color:#f2d18c}
+.chart-tool-button:hover,.chart-tool-button.armed{border-color:#d4a84e;color:#f0ce83;background:#302719}
+.chart-feed-status{font:8px "DM Mono";letter-spacing:.5px;color:#83cba9;margin-left:7px}
+.own-chart-frame{height:510px;position:relative;background:#0b1119}
+#goldChart{height:100%;width:100%}
+.chart-empty{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:25px;color:#aab9c9;background:#0b1119;font:11px "DM Mono";line-height:1.7;pointer-events:none}
+.own-chart-footer{display:flex;justify-content:space-between;gap:10px;padding:9px 14px;border-top:1px solid #253344;color:#7f90a2;font:8px "DM Mono";letter-spacing:.3px}
+.theme-toggle{cursor:pointer}
+html[data-theme="light"]{--bg:#edf2f7;--panel:#fff;--panel2:#f7f9fc;--line:#d5dee8;--text:#243247;--muted:#64748b;color:var(--text);background:var(--bg)}
+html[data-theme="light"] body{background:radial-gradient(ellipse at 75% -20%,#fff 0,transparent 42%),var(--bg);color:#243247}
+html[data-theme="light"] .sidebar{background:#fff;border-color:#d9e1eb}
+html[data-theme="light"] .brand,html[data-theme="light"] .nav-item{color:#526176}
+html[data-theme="light"] .brand-copy small,html[data-theme="light"] .side-label,html[data-theme="light"] .eyebrow{color:#738197}
+html[data-theme="light"] .nav-item:hover,html[data-theme="light"] .nav-item.active{background:#f6edda;color:#8a641f}
+html[data-theme="light"] .connection-card,html[data-theme="light"] .session-box,html[data-theme="light"] .card,html[data-theme="light"] .live-source-card,html[data-theme="light"] .live-panel,html[data-theme="light"] .own-chart-section{background:#fff;border-color:#d9e1eb;color:#243247}
+html[data-theme="light"] .topbar,html[data-theme="light"] .profile-mini,html[data-theme="light"] .divider,html[data-theme="light"] th,html[data-theme="light"] td,html[data-theme="light"] .flow-stat-row,html[data-theme="light"] .absorb-footer,html[data-theme="light"] .decision-foot{border-color:#dce4ed}
+html[data-theme="light"] .crumb b,html[data-theme="light"] .page-heading h1,html[data-theme="light"] .card h2,html[data-theme="light"] .metric strong,html[data-theme="light"] td strong,html[data-theme="light"] .live-source-price,html[data-theme="light"] .live-panel h3,html[data-theme="light"] .live-metrics strong,html[data-theme="light"] .lighter-summary strong,html[data-theme="light"] .cvd-value,html[data-theme="light"] .flow-card h3,html[data-theme="light"] .structure-card h3,html[data-theme="light"] .check-row{color:#26364b}
+html[data-theme="light"] .notice{background:#fff8e9;border-color:#e7d5ad}
+html[data-theme="light"] .notice p{color:#786744}
+html[data-theme="light"] .notice strong{color:#77551a}
+html[data-theme="light"] .tradingview-note,html[data-theme="light"] .page-heading p,html[data-theme="light"] .section-head p,html[data-theme="light"] .helper,html[data-theme="light"] .price-sub,html[data-theme="light"] .futures-sub,html[data-theme="light"] .live-source-meta,html[data-theme="light"] .live-disclaimer,html[data-theme="light"] .live-footnote,html[data-theme="light"] .profile-footer,html[data-theme="light"] .zone-note{color:#65758a}
+html[data-theme="light"] .market-pill{background:#fff8e9;color:#8a641f;border-color:#e6d4ad}
+html[data-theme="light"] .own-chart-toolbar{background:#f4f7fb;border-color:#dce4ed}
+html[data-theme="light"] .chart-timeframes button,html[data-theme="light"] .chart-tool-button{background:#fff;border-color:#cbd5e1;color:#526176}
+html[data-theme="light"] .chart-timeframes button.selected{background:#f6edda;color:#8a641f;border-color:#d4b66f}
+html[data-theme="light"] .own-chart-frame{background:#f4f7fb}
+html[data-theme="light"] .chart-empty{background:#f4f7fb;color:#526176}
+html[data-theme="light"] .own-chart-footer{border-color:#dce4ed;color:#65758a}
+html[data-theme="light"] .live-book-row{background:#f1f5f9;color:#334155}
+html[data-theme="light"] .live-cvd-track{background:#e2e8f0}
+html[data-theme="light"] .session-strip{background:#fff;border-color:#d9e1eb}
+html[data-theme="light"] .session-rule p,html[data-theme="light"] .session-clock strong i{color:#65758a}
+html[data-theme="light"] .modal{background:#fff;color:#243247;border-color:#d5dee8}
+html[data-theme="light"] .modal input,html[data-theme="light"] .modal select{background:#f8fafc;color:#243247;border-color:#cbd5e1}
+html[data-theme="light"] .modal form label,html[data-theme="light"] .modal-head h2{color:#334155}
+html[data-theme="light"] .freeze-badge.is-frozen{color:#245d89}
+@media(max-width:720px){.own-chart-heading{align-items:start;flex-direction:column}.own-chart-toolbar{align-items:start}.chart-tools{width:100%}.own-chart-frame{height:430px}.own-chart-footer{flex-direction:column}}
