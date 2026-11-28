@@ -50,6 +50,39 @@
 
       <section class="notice"><span class="notice-icon">i</span><div><strong>Mixed data mode: live feeds above, legacy sample panels below</strong><p>The connected-feed workspace uses public XAU reference pricing and exchange feeds when available. The older chart, volume profile, key-zone examples and order-flow panels below remain illustrative. No licensed COMEX depth feed is connected.</p></div><span class="notice-tag">DATA LABELS</span></section>
 
+      <section class="tradingview-section" id="price-chart">
+        <div class="tradingview-heading">
+          <div>
+            <div class="eyebrow">LIVE CHART / TRADINGVIEW</div>
+            <h2>XAUUSD · Spot Gold</h2>
+            <p>Default timeframe 5 minutes · Asia/Kolkata timezone · TradingView market data</p>
+          </div>
+          <a class="tradingview-open" href="https://www.tradingview.com/symbols/XAUUSD/" target="_blank" rel="noopener noreferrer">OPEN ON TRADINGVIEW ↗</a>
+        </div>
+        <div class="tradingview-frame">
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+            {
+              "autosize": true,
+              "symbol": "OANDA:XAUUSD",
+              "interval": "5",
+              "timezone": "Asia/Kolkata",
+              "theme": "dark",
+              "style": "1",
+              "locale": "en",
+              "withdateranges": true,
+              "allow_symbol_change": true,
+              "save_image": false,
+              "calendar": false,
+              "support_host": "https://www.tradingview.com"
+            }
+            </script>
+          </div>
+        </div>
+        <div class="tradingview-note"><span>DATA NOTE</span> Chart pricing comes from TradingView's selected OANDA XAUUSD feed. It is a separate source from the public spot reference and exchange order books in the live intelligence panels below.</div>
+      </section>
+
       <section class="market-grid" id="market-grid">
         <article class="card instrument-card">
           <div class="card-head"><div class="instrument-title"><div class="gold-icon">Au</div><div><span class="muted">SPOT INSTRUMENT</span><h2>XAUUSD <span class="live-chip">SIMULATED</span></h2></div></div><span class="dots">···</span></div>
