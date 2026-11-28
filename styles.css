@@ -49,3 +49,21 @@
 .live-footnote span{color:#d3ad65;font:9px "DM Mono";margin-right:8px}
 @media(max-width:900px){.live-source-grid{grid-template-columns:1fr 1fr}.live-data-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.live-section-head{align-items:start;gap:8px;flex-direction:column}.live-source-grid{grid-template-columns:1fr}.live-source-card{padding:13px}.lighter-summary{grid-template-columns:1fr 1fr}.live-book-columns{gap:8px}.live-metrics{grid-template-columns:1fr 1fr}.live-mode-pill{font-size:8px}}
+
+
+/* TradingView XAUUSD chart embed */
+.tradingview-section{margin:22px 0 26px}
+.tradingview-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:12px}
+.tradingview-heading h2{font:700 18px Manrope;margin:5px 0 4px;color:#e8edf4}
+.tradingview-heading p{margin:0;color:#8796a8;font-size:10px}
+.tradingview-open{flex:none;text-decoration:none;border:1px solid #34475a;border-radius:5px;padding:8px 10px;color:#b8c9da;font:9px "DM Mono";letter-spacing:.5px}
+.tradingview-open:hover{border-color:#c49a4a;color:#e2c17e}
+.tradingview-frame{height:590px;min-height:420px;overflow:hidden;border:1px solid #263646;border-radius:9px;background:#0b1119}
+.tradingview-widget-container{height:100%;width:100%}
+.tradingview-widget-container__widget{height:calc(100% - 32px);width:100%}
+.tradingview-widget-container iframe{border:0!important}
+.tradingview-widget-copyright{height:25px;padding:4px 9px;text-align:right;background:#0b1119;font:9px Arial,sans-serif}
+.tradingview-widget-copyright a{color:#8295a9;text-decoration:none}
+.tradingview-note{margin-top:8px;color:#8191a3;font-size:9px;line-height:1.5}
+.tradingview-note span{color:#d2ad67;font:9px "DM Mono";margin-right:7px}
+@media(max-width:720px){.tradingview-heading{align-items:start;flex-direction:column}.tradingview-frame{height:490px;min-height:390px}.tradingview-open{font-size:8px}.tradingview-section{margin:18px 0 22px}}
