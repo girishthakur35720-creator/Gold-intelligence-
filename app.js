@@ -255,27 +255,52 @@ setInterval(updateProfileState, 30000);
     document.querySelectorAll("[data-interval]").forEach((b) => b.classList.toggle("selected", b.dataset.interval === value));
     persist(); loadCandles();
   }
+  async function postInfo(payload) {
+    const response = await fetch("https://api.hyperliquid.xyz/info", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const body = await response.text();
+    if (!response.ok) throw new Error("Hyperliquid HTTP " + response.status + (body ? ": " + body.slice(0,120) : ""));
+    try { return JSON.parse(body); } catch (_) { throw new Error("Invalid Hyperliquid response"); }
+  }
   async function discoverCoin() {
-    const response = await fetch("https://api.hyperliquid.xyz/info", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "metaAndAssetCtxs" }) });
-    if (!response.ok) throw new Error("Hyperliquid discovery HTTP " + response.status);
-    const meta = await response.json();
-    const assets = meta && meta[0] && meta[0].universe || [];
-    const match = assets.find((x) => /gold|xau/i.test(x.name || ""));
-    if (match) return match.name;
-    const dexResponse = await fetch("https://api.hyperliquid.xyz/info", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "perpDexs" }) });
-    if (!dexResponse.ok) throw new Error("No gold contract on main DEX");
-    const dexs = await dexResponse.json();
-    for (const dex of (dexs || [])) {
-      if (!dex || !dex.name) continue;
+    const candidates = [];
+    try {
+      const main = await postInfo({ type: "metaAndAssetCtxs" });
+      for (const asset of (main && main[0] && main[0].universe) || []) {
+        if (/gold|xau/i.test(asset.name || "")) candidates.push(asset.name);
+      }
+    } catch (_) {}
+    try {
+      const dexs = await postInfo({ type: "perpDexs" });
+      for (const dex of (dexs || [])) {
+        if (!dex || !dex.name) continue;
+        try {
+          const meta = await postInfo({ type: "metaAndAssetCtxs", dex: dex.name });
+          for (const asset of (meta && meta[0] && meta[0].universe) || []) {
+            if (/gold|xau/i.test(asset.name || "")) {
+              const qualified = String(asset.name).includes(":") ? asset.name : dex.name + ":" + asset.name;
+              candidates.push(qualified, asset.name);
+            }
+          }
+        } catch (_) {}
+      }
+    } catch (_) {}
+    // The existing live market feed has identified xyz:GOLD. Test it first, then discovered aliases.
+    candidates.unshift("xyz:GOLD");
+    const unique = [...new Set(candidates)];
+    let lastError = "No GOLD/XAU contract found in public DEX metadata";
+    for (const candidate of unique) {
       try {
-        const r = await fetch("https://api.hyperliquid.xyz/info", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "metaAndAssetCtxs", dex: dex.name }) });
-        if (!r.ok) continue;
-        const m = await r.json();
-        const found = (m && m[0] && m[0].universe || []).find((x) => /gold|xau/i.test(x.name || ""));
-        if (found) return dex.name + ":" + found.name;
-      } catch (_) {}
+        const endTime = Date.now();
+        const startTime = endTime - 500 * 300 * 1000;
+        const probe = await postInfo({ type: "candleSnapshot", req: { coin: candidate, interval: "5m", startTime, endTime } });
+        if (Array.isArray(probe) && probe.length) return candidate;
+        lastError = "No candle history returned for " + candidate;
+      } catch (error) { lastError = candidate + ": " + error.message; }
     }
-    throw new Error("No supported GOLD/XAU perpetual found");
+    throw new Error(lastError);
   }
   async function loadCandles() {
     if (!coin) return;
@@ -306,9 +331,9 @@ setInterval(updateProfileState, 30000);
       $("chartFeedStatus").textContent = coin.toUpperCase() + " · " + unique.length + " BARS · " + prefs.interval.toUpperCase();
       $("chartEmpty").style.display = "none";
     } catch (error) {
-      $("chartFeedStatus").textContent = "FEED UNAVAILABLE";
+      $("chartFeedStatus").textContent = "FEED ERROR";
       $("chartEmpty").style.display = "grid";
-      $("chartEmpty").textContent = error.message + ". Chart is waiting for an accessible public gold candle market.";
+      $("chartEmpty").textContent = "Candle request failed: " + error.message + ". The chart will retry automatically.";
     }
   }
   $("chartThemeToggle").addEventListener("click", () => { prefs.theme = prefs.theme === "dark" ? "light" : "dark"; applyTheme(); });
@@ -324,8 +349,8 @@ setInterval(updateProfileState, 30000);
   applyTheme();
   setInterval(() => { if (coin) loadCandles(); }, 60000);
   discoverCoin().then((found) => { coin = found; loadCandles(); }).catch((error) => {
-    $("chartFeedStatus").textContent = "FEED UNAVAILABLE";
+    $("chartFeedStatus").textContent = "FEED ERROR";
     $("chartEmpty").style.display = "grid";
-    $("chartEmpty").textContent = error.message + ". Public candle data could not be discovered.";
+    $("chartEmpty").textContent = "Market discovery failed: " + error.message + ". Check the live Hyperliquid feed below.";
   });
 })();
