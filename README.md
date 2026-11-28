@@ -22,16 +22,16 @@ A market-intelligence dashboard for XAUUSD traders. Spot gold is the execution r
 
 - Gold API XAU/USD indicative reference, refreshed every 15 seconds.
 - Hyperliquid market discovery via public metadata, then WebSocket L2 book and trade subscriptions.
-- Lighter market discovery via public REST metadata, then public order-book and recent-trade snapshots every 5 seconds when a matching active perpetual exists.
+- Lighter market discovery via public REST metadata, then up to 250 resting orders per side and the latest 100 trades every 5 seconds when a matching active perpetual exists.
 - Independent venue books, top-of-book spread and top-10-level size imbalance.
-- CVD accumulated from newly observed trade prints after connection.
+- Hyperliquid CVD accumulated from new trade prints after connection; Lighter CVD seeded from its initial recent-trade snapshot, then updated with unseen trades.
 - Automatic Hyperliquid reconnect, source timestamps, provider status and explicit unavailable states.
 
 ## Important data limitations
 
 - Public exchange perpetual order books are venue-specific derivatives data, not the global OTC XAUUSD book.
 - Gold API's XAU price is an indicative spot reference, not an executable broker quote and not a substitute for a licensed institutional feed.
-- Lighter REST snapshots can be cached by its edge. They are not equivalent to a guaranteed low-latency WebSocket feed.
+- Lighter REST snapshots can be cached by its edge. They are not equivalent to a guaranteed low-latency WebSocket feed. Its visible depth is capped at the requested 250 resting orders per side, and its CVD starts with the latest 100-trade snapshot rather than a full session history.
 - CVD starts at zero when the browser connects. It does not reconstruct trades missed before connection.
 - The legacy volume profile, zones, order-flow cards and structure panel contain illustrative sample values until their underlying calculations are connected to validated data.
 - No automatic trading is enabled.
