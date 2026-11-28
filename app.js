@@ -211,9 +211,6 @@ setInterval(updateProfileState, 30000);
       upColor: "#20b887", downColor: "#e56f73", borderUpColor: "#20b887", borderDownColor: "#e56f73",
       wickUpColor: "#20b887", wickDownColor: "#e56f73", priceLineVisible: true, lastValueVisible: true
     });
-    if (prefs.range) {
-      try { chart.timeScale().setVisibleLogicalRange(prefs.range); } catch (_) {}
-    }
     chart.timeScale().subscribeVisibleLogicalRangeChange((range) => {
       if (range) { prefs.range = range; persist(); }
     });
@@ -301,9 +298,13 @@ setInterval(updateProfileState, 30000);
       const unique = candles.filter((c, i) => !i || c.time !== candles[i - 1].time);
       candleSeries.setData(unique);
       drawLevels();
+      if (prefs.range) {
+        try { chart.timeScale().setVisibleLogicalRange(prefs.range); } catch (_) { chart.timeScale().fitContent(); }
+      } else {
+        chart.timeScale().fitContent();
+      }
       $("chartFeedStatus").textContent = coin.toUpperCase() + " · " + unique.length + " BARS · " + prefs.interval.toUpperCase();
       $("chartEmpty").style.display = "none";
-      if (!prefs.range) chart.timeScale().fitContent();
     } catch (error) {
       $("chartFeedStatus").textContent = "FEED UNAVAILABLE";
       $("chartEmpty").style.display = "grid";
