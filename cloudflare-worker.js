@@ -1,6 +1,6 @@
 const OWNER = "girishthakur35720-creator";
 const REPO = "Gold-intelligence-";
-const BRANCH = "main";
+const REV = "3688c333c51828acf56ac6083c14258a6991c8db";
 const CONTENT_TYPES = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -15,24 +15,20 @@ export default {
         ok: true,
         app: "Gold Intelligence",
         source: "GitHub",
+        revision: REV,
         mode: "phase-1-live-data",
         dataSources: ["Gold API XAU reference", "Hyperliquid public WebSocket", "Lighter public REST snapshots"],
       });
     }
     let path = decodeURIComponent(url.pathname);
     if (path === "/" || path.endsWith("/")) path += "index.html";
-    if (path.includes("..") || path.includes(String.fromCharCode(92))) {
-      return new Response("Not found", { status: 404 });
-    }
+    if (path.includes("..") || path.includes(String.fromCharCode(92))) return new Response("Not found", { status: 404 });
     const extension = path.slice(path.lastIndexOf("."));
     const contentType = CONTENT_TYPES[extension];
     if (!contentType) return new Response("Not found", { status: 404 });
-    const source = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}${path}`;
-    const upstream = await fetch(source, { cf: { cacheTtl: 15, cacheEverything: true } });
-    if (!upstream.ok) {
-      return new Response("Asset unavailable", { status: upstream.status === 404 ? 404 : 502 });
-    }
-    // Do not forward GitHub's restrictive CSP/sandbox headers to the app.
+    const source = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${REV}${path}`;
+    const upstream = await fetch(source, { cf: { cacheTtl: 60, cacheEverything: true } });
+    if (!upstream.ok) return new Response("Asset unavailable", { status: upstream.status === 404 ? 404 : 502 });
     const headers = new Headers();
     headers.set("Content-Type", contentType);
     headers.set("Cache-Control", "public, max-age=15");
